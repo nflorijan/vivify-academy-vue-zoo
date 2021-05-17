@@ -14,7 +14,7 @@
       <label>
         Datum Rodjenja:
       </label>
-      <input type="text" v-model="noviDatumRodjenja">
+      <input type="date" v-model="noviDatumRodjenja">
       <button>Add Animal</button>
     </form>
     <table>
@@ -61,7 +61,7 @@ export default {
       this.animals.push({
         vrsta: this.novaVrsta,
         ime: this.novoIme,
-        datumRodjenja: this.noviDatumRodjenja
+        datumRodjenja: new Date(this.noviDatumRodjenja)
       })
       this.novaVrsta = ''
       this.novoIme = ''
