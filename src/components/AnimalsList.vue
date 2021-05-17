@@ -11,6 +11,7 @@
         <td>{{ animal.vrsta }}</td>
         <td>{{ animal.ime }}</td>
         <td>{{ animal.datumRodjenja ? animal.datumRodjenja: 'Nepoznat' }}</td>
+        <button @click="deleteFromList(index)">Remove</button>
       </tr>
     </table>
   </div>
@@ -26,6 +27,11 @@ export default {
         {vrsta: 'Prase', ime: 'Joca', datumRodjenja: new Date(2020, 1, 21)},
         {vrsta: 'Prase', ime: 'Joca', datumRodjenja: null}
       ]
+    }
+  },
+  methods: {
+    deleteFromList(index) {
+      this.animals.splice(index, 1);
     }
   }
 }
