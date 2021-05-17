@@ -1,6 +1,22 @@
 <template>
   <div>
     <h2>Animals List</h2>
+    <h4>Add Animal</h4>
+    <form v-on:submit.prevent="addAnimal">
+      <label>
+        Vrsta:
+      </label>
+      <input type="text" v-model="novaVrsta">
+      <label>
+        Ime:
+      </label>
+      <input type="text" v-model="novoIme">
+      <label>
+        Datum Rodjenja:
+      </label>
+      <input type="text" v-model="noviDatumRodjenja">
+      <button>Add Animal</button>
+    </form>
     <table>
       <tr>
         <th>Vrsta</th>
@@ -22,6 +38,9 @@ export default {
   name: 'AnimalsList',
   data () {
     return {
+      novaVrsta: '',
+      novoIme: '',
+      noviDatumRodjenja: '',
       animals: [
         {vrsta: 'Pas', ime: 'Zuca', datumRodjenja: new Date(2018, 11, 24)},
         {vrsta: 'Macka', ime: 'Lunja', datumRodjenja: new Date(2020, 12, 20)},
@@ -38,6 +57,16 @@ export default {
       const movedItem = this.animals.splice(index, 1);
       return this.animals.unshift(movedItem[0]);
     },
+    addAnimal() {
+      this.animals.push({
+        vrsta: this.novaVrsta,
+        ime: this.novoIme,
+        datumRodjenja: this.noviDatumRodjenja
+      })
+      this.novaVrsta = ''
+      this.novoIme = ''
+      this.noviDatumRodjenja = ''
+    }
   }
 }
 </script>
