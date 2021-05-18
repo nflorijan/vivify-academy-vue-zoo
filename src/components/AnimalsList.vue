@@ -91,10 +91,16 @@ export default {
       })
     },
     getAllAnimals (sector) {
-       const array = this.animals.filter(data => data.sektor === sector)
-  
-        console.log(array);
-        
+      const array = this.animals.filter(data => data.sektor === sector)
+      const newArray = array.map((el) => {
+        return ` (Vrsta: ${el.vrsta}, Ime: ${el.ime},  Datum Rodjenja: ${el.datumRodjenja}, Sektor: ${el.sektor})`
+      });
+      
+      if(newArray.length == 0) {
+        alert('Trenutno nema zivotinja u odabranom sektoru')
+      } else {
+        alert(newArray)
+      }
     }
 
 
