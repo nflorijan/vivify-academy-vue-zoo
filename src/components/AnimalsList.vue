@@ -15,6 +15,12 @@
         Datum Rodjenja:
       </label>
       <input type="date" v-model="noviDatumRodjenja">
+      <label>Select sector</label>
+      <select v-model="noviSektor">
+        <option v-for="(sector, index) in sectors" :key="index">
+          {{ sector }}
+        </option>
+      </select>
       <button>Add Animal</button>
     </form>
     <table>
@@ -22,13 +28,26 @@
         <th>Vrsta</th>
         <th>Ime</th>
         <th>Datum Rodjenja</th>
+        <th>Sektor</th>
       </tr>
       <tr v-for="(animal, index) in animals" :key="index">
         <td>{{ animal.vrsta }}</td>
         <td>{{ animal.ime }}</td>
         <td>{{ animal.datumRodjenja ? animal.datumRodjenja: 'Nepoznat' }}</td>
+        <td>{{ animal.sektor ? animal.sektor: 'Nepoznat' }}</td>
         <button @click="deleteFromList(index)">Remove</button>
         <button @click="moveToTop(index)">Move to to top</button>
+      </tr>
+    </table>
+
+    <h2>Lista Sektora</h2>
+    <table>
+      <tr>
+        <th>Sektor</th>
+      </tr>
+      <tr v-for="(sector, index) in sectors" :key="index">
+        <td>{{ sector }}</td>
+        <button @click="getAllAnimals(sector)">Vidi listu zivotinja</button>
       </tr>
     </table>
   </div>
@@ -42,11 +61,15 @@ export default {
       novoIme: '',
       noviDatumRodjenja: '',
       animals: [
-        {vrsta: 'Pas', ime: 'Zuca', datumRodjenja: new Date(2018, 11, 24)},
-        {vrsta: 'Macka', ime: 'Lunja', datumRodjenja: new Date(2020, 12, 20)},
-        {vrsta: 'Prase', ime: 'Joca', datumRodjenja: new Date(2020, 1, 21)},
+        {vrsta: 'Koker spanijel', ime: 'Zuca', datumRodjenja: new Date(2018, 11, 24), sektor: 'Pas'},
+        {vrsta: 'Rotvajer', ime: 'Arci', datumRodjenja: new Date(2020, 12, 24), sektor: 'Pas'},
+        {vrsta: 'Sibirska sumska', ime: 'Lunja', datumRodjenja: new Date(2020, 12, 20)},
+        {vrsta: 'Anakonda', ime: 'Joca', datumRodjenja: new Date(2020, 1, 21), sektor: 'Zmija'},
         {vrsta: 'Papagaj', ime: 'Papi', datumRodjenja: null}
-      ]
+      ],
+      sectors: ['Ptica', 'Zmija', 'Pas', 'Macka'],
+      sector: '',
+      noviSektor: ''
     }
   },
   methods: {
@@ -61,12 +84,18 @@ export default {
       this.animals.push({
         vrsta: this.novaVrsta,
         ime: this.novoIme,
-        datumRodjenja: new Date(this.noviDatumRodjenja)
+        datumRodjenja: new Date(this.noviDatumRodjenja),
+        sektor: this.noviSektor,
       })
-      this.novaVrsta = ''
-      this.novoIme = ''
-      this.noviDatumRodjenja = ''
+    },
+    getAllAnimals (sector) {
+       const array = this.animals.filter(data => data.sektor === sector)
+  
+        console.log(array);
+        
     }
+
+
   }
 }
 </script>
