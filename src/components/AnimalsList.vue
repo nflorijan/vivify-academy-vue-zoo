@@ -33,8 +33,8 @@
       <tr v-for="(animal, index) in animals" :key="index">
         <td>{{ animal.vrsta }}</td>
         <td>{{ animal.ime }}</td>
-        <td>{{ animal.datumRodjenja ? animal.datumRodjenja: 'Nepoznat' }}</td>
-        <td>{{ animal.sektor ? animal.sektor: 'Nepoznat' }}</td>
+        <td>{{ animal.datumRodjenja || 'Nepoznat' }}</td>
+        <td>{{ animal.sektor || 'Nepoznat' }}</td>
         <button @click="deleteFromList(index)">Remove</button>
         <button @click="moveToTop(index)">Move to to top</button>
       </tr>
@@ -96,7 +96,7 @@ export default {
         return ` (Vrsta: ${el.vrsta}, Ime: ${el.ime},  Datum Rodjenja: ${el.datumRodjenja}, Sektor: ${el.sektor})`
       });
       
-      if(newArray.length === 0) {
+      if(!newArray.length) {
         alert('Trenutno nema zivotinja u odabranom sektoru')
       } else {
         alert(newArray)
