@@ -53,6 +53,8 @@
   </div>
 </template>
 <script>
+import { format } from 'date-fns'
+
 export default {
   name: 'AnimalsList',
   data () {
@@ -61,11 +63,11 @@ export default {
       novoIme: '',
       noviDatumRodjenja: '',
       animals: [
-        {vrsta: 'Koker spanijel', ime: 'Zuca', datumRodjenja: new Date(2018, 11, 24), sektor: 'Pas'},
-        {vrsta: 'Rotvajer', ime: 'Arci', datumRodjenja: new Date(2020, 12, 24), sektor: 'Pas'},
-        {vrsta: 'Sibirska sumska', ime: 'Lunja', datumRodjenja: new Date(2020, 12, 20)},
-        {vrsta: 'Anakonda', ime: 'Joca', datumRodjenja: new Date(2020, 1, 21), sektor: 'Zmija'},
-        {vrsta: 'Papagaj', ime: 'Papi', datumRodjenja: null}
+        {vrsta: 'Koker spanijel', ime: 'Zuca', datumRodjenja: format(new Date(2018, 11, 24), 'MMM dd, yyyy'), sektor: 'Pas'},
+        {vrsta: 'Rotvajer', ime: 'Arci', datumRodjenja: format(new Date(2020, 12, 24), 'MMM dd, yyyy'), sektor: 'Pas'},
+        {vrsta: 'Sibirska sumska', ime: 'Lunja', datumRodjenja: format(new Date(2020, 12, 20), 'MMM dd, yyyy')},
+        {vrsta: 'Anakonda', ime: 'Joca', datumRodjenja: format(new Date(2020, 1, 21), 'MMM dd, yyyy'), sektor: 'Zmija'},
+        {vrsta: 'Papagaj', ime: 'Papi'}
       ],
       sectors: ['Ptica', 'Zmija', 'Pas', 'Macka'],
       sector: '',
@@ -84,7 +86,7 @@ export default {
       this.animals.push({
         vrsta: this.novaVrsta,
         ime: this.novoIme,
-        datumRodjenja: new Date(this.noviDatumRodjenja),
+        datumRodjenja: format(new Date(this.noviDatumRodjenja), 'MMM dd, yyyy'),
         sektor: this.noviSektor,
       })
     },
