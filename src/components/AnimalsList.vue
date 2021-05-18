@@ -2,7 +2,7 @@
   <div>
     <h2>Animals List</h2>
     <h4>Add Animal</h4>
-    <form v-on:submit.prevent="addAnimal">
+    <form @submit.prevent="addAnimal">
       <label>
         Vrsta:
       </label>
@@ -96,14 +96,12 @@ export default {
         return ` (Vrsta: ${el.vrsta}, Ime: ${el.ime},  Datum Rodjenja: ${el.datumRodjenja}, Sektor: ${el.sektor})`
       });
       
-      if(newArray.length == 0) {
+      if(newArray.length === 0) {
         alert('Trenutno nema zivotinja u odabranom sektoru')
       } else {
         alert(newArray)
       }
     }
-
-
   }
 }
 </script>
